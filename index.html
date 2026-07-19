@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Naqsh Khussa — Handcrafted Punjabi Khussa</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jameel+Noori+Nastaleeq&family=Inter:wght@400;500;600&display=swap');
+
+  :root{
+    --cream:#F6EFDD;
+    --clay:#7A1F2B;
+    --clay-dark:#5C1520;
+    --charcoal:#160E23;
+    --gold:#C9A24B;
+    --olive:#2E1A4D;
+    --ivory:#FBF6EC;
+    --line:rgba(22,14,35,0.16);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--charcoal);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif;}
+  a{color:inherit;}
+
+  /* ---------- Header ---------- */
+  header{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:22px 5%;
+    border-bottom:1px solid var(--line);
+    position:sticky;top:0;background:var(--cream);z-index:50;
+  }
+  .logo{font-size:26px;font-weight:600;letter-spacing:0.5px;}
+  .logo span{color:var(--clay);}
+  nav{display:flex;gap:28px;align-items:center;font-size:14px;font-weight:500;}
+  nav a{cursor:pointer;text-decoration:none;opacity:0.8;}
+  nav a:hover{opacity:1;}
+  .cart-btn{
+    background:var(--charcoal);color:var(--ivory);border:none;
+    padding:9px 16px;border-radius:2px;font-size:13px;cursor:pointer;
+    display:flex;align-items:center;gap:6px;font-weight:500;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    display:grid;grid-template-columns:1.1fr 0.9fr;gap:40px;
+    padding:70px 5% 60px;align-items:center;
+    border-bottom:1px solid var(--line);
+  }
+  .hero-eyebrow{
+    font-size:12px;letter-spacing:3px;text-transform:uppercase;
+    color:var(--clay);font-weight:600;margin-bottom:16px;
+  }
+  .hero h1{font-size:56px;line-height:1.05;font-weight:600;margin:0 0 20px;}
+  .hero p{font-size:16px;line-height:1.7;color:#5c5347;max-width:440px;margin-bottom:28px;}
+  .hero-motif{
+    width:100%;aspect-ratio:4/5;background:var(--olive);
+    border:1px solid var(--gold);
+    border-radius:2px;position:relative;overflow:hidden;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .hero-motif svg{width:70%;height:70%;}
+  .btn-primary{
+    background:var(--clay);color:var(--ivory);border:none;
+    padding:14px 30px;font-size:14px;font-weight:600;letter-spacing:0.5px;
+    cursor:pointer;border-radius:2px;
+  }
+  .btn-primary:hover{background:var(--clay-dark);}
+
+  /* ---------- Strip ---------- */
+  .strip{
+    display:flex;justify-content:space-around;padding:20px 5%;
+    border-bottom:1px solid var(--line);font-size:13px;color:#5c5347;
+    flex-wrap:wrap;gap:12px;
+  }
+  .strip div{display:flex;align-items:center;gap:8px;font-weight:500;}
+
+  /* ---------- Products ---------- */
+  .section-title{
+    padding:60px 5% 10px;text-align:center;
+  }
+  .section-title h2{font-size:36px;margin:0 0 8px;}
+  .section-title p{color:#5c5347;font-size:14px;}
+
+  .grid{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:28px;padding:40px 5% 80px;
+  }
+  .card{
+    background:var(--ivory);border:1px solid var(--line);
+    display:flex;flex-direction:column;position:relative;
+    border-top:2px solid var(--gold);
+  }
+  .card-img{
+    aspect-ratio:1/1;background:var(--charcoal);overflow:hidden;position:relative;
+  }
+  .card-img img{width:100%;height:100%;object-fit:cover;display:block;}
+  .card-body{padding:18px;}
+  .card-tag{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--olive);font-weight:600;margin-bottom:6px;}
+  .card h3{font-size:20px;margin:0 0 4px;font-weight:600;}
+  .card .price{font-size:16px;font-weight:600;color:var(--clay);margin:10px 0 14px;}
+  .price .old{color:#a89e8e;text-decoration:line-through;font-weight:400;font-size:13px;margin-left:8px;}
+  .card-actions{display:flex;gap:8px;}
+  .btn-add{
+    flex:1;background:var(--charcoal);color:var(--ivory);border:none;
+    padding:11px;font-size:13px;font-weight:500;cursor:pointer;border-radius:2px;
+  }
+  .btn-add:hover{background:#1c1712;}
+  .stock-badge{
+    position:absolute;top:10px;left:10px;background:var(--charcoal);color:var(--gold);
+    font-size:10px;padding:4px 9px;border-radius:2px;letter-spacing:0.5px;
+    border:1px solid var(--gold);
+  }
+
+  /* ---------- Footer ---------- */
+  footer{
+    background:var(--charcoal);color:var(--ivory);padding:50px 5% 26px;
+    display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:40px;
+  }
+  footer h4{font-size:14px;letter-spacing:1px;text-transform:uppercase;margin:0 0 14px;color:var(--gold);}
+  footer p, footer a{font-size:13px;color:#c9c1b3;line-height:2;text-decoration:none;}
+  .footer-bottom{
+    text-align:center;padding-top:26px;margin-top:26px;border-top:1px solid rgba(255,255,255,0.1);
+    font-size:12px;color:#8a8175;grid-column:1/-1;
+  }
+
+  /* ---------- Cart Drawer ---------- */
+  .overlay{
+    position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:200;
+    display:none;
+  }
+  .overlay.show{display:block;}
+  .drawer{
+    position:fixed;top:0;right:0;height:100%;width:400px;max-width:92vw;
+    background:var(--ivory);z-index:201;transform:translateX(100%);
+    transition:transform 0.3s ease;display:flex;flex-direction:column;
+  }
+  .drawer.show{transform:translateX(0);}
+  .drawer-head{padding:20px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;}
+  .drawer-head h3{margin:0;font-size:22px;}
+  .drawer-close{background:none;border:none;font-size:22px;cursor:pointer;color:var(--charcoal);}
+  .drawer-items{flex:1;overflow-y:auto;padding:16px 20px;}
+  .drawer-item{display:flex;gap:12px;padding:14px 0;border-bottom:1px solid var(--line);}
+  .drawer-item img{width:64px;height:64px;object-fit:cover;border-radius:2px;background:var(--charcoal);}
+  .drawer-item-info{flex:1;}
+  .drawer-item-info h5{margin:0 0 4px;font-size:14px;font-weight:600;}
+  .qty-row{display:flex;align-items:center;gap:10px;margin-top:6px;}
+  .qty-row button{width:22px;height:22px;border:1px solid var(--line);background:none;border-radius:2px;cursor:pointer;font-size:13px;}
+  .drawer-foot{padding:20px;border-top:1px solid var(--line);}
+  .total-row{display:flex;justify-content:space-between;font-size:16px;font-weight:600;margin-bottom:16px;}
+  .empty-cart{color:#8a8175;font-size:14px;text-align:center;padding:60px 0;}
+
+  /* ---------- Modal (checkout / admin) ---------- */
+  .modal-overlay{
+    position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:300;
+    display:none;align-items:center;justify-content:center;padding:20px;
+  }
+  .modal-overlay.show{display:flex;}
+  .modal{
+    background:var(--ivory);max-width:480px;width:100%;max-height:88vh;overflow-y:auto;
+    padding:30px;border-radius:2px;position:relative;
+  }
+  .modal h3{margin:0 0 6px;font-size:24px;}
+  .modal .sub{font-size:13px;color:#8a8175;margin-bottom:20px;}
+  .modal-close{position:absolute;top:16px;right:18px;background:none;border:none;font-size:20px;cursor:pointer;}
+  .field{margin-bottom:14px;}
+  .field label{display:block;font-size:12px;font-weight:600;margin-bottom:5px;color:#5c5347;}
+  .field input,.field textarea,.field select{
+    width:100%;padding:10px 12px;border:1px solid var(--line);background:var(--cream);
+    font-family:inherit;font-size:14px;border-radius:2px;
+  }
+  .field textarea{resize:vertical;min-height:60px;}
+
+  /* ---------- Admin ---------- */
+  .admin-toggle{
+    position:fixed;bottom:20px;right:20px;background:var(--charcoal);color:var(--ivory);
+    border:none;width:46px;height:46px;border-radius:50%;cursor:pointer;font-size:18px;
+    z-index:150;
+  }
+  .admin-lock{padding:10px 0;}
+  .admin-product{
+    border:1px solid var(--line);padding:14px;margin-bottom:12px;border-radius:2px;background:var(--cream);
+  }
+  .admin-product-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+  .admin-product-head h5{margin:0;font-size:14px;}
+  .del-btn{background:none;border:1px solid var(--clay);color:var(--clay);font-size:11px;padding:4px 8px;cursor:pointer;border-radius:2px;}
+  .photo-upload-row{display:flex;gap:12px;align-items:center;}
+  .photo-preview{width:56px;height:56px;object-fit:cover;border-radius:2px;background:var(--charcoal);border:1px solid var(--line);flex-shrink:0;}
+  .photo-upload-row input[type=file]{padding:6px 0;border:none;background:none;font-size:12px;}
+  .save-note{font-size:12px;color:var(--olive);margin-top:10px;display:none;}
+  .save-note.show{display:block;}
+
+  @media(max-width:800px){
+    .hero{grid-template-columns:1fr;padding:40px 6%;}
+    .hero h1{font-size:38px;}
+    footer{grid-template-columns:1fr;}
+    nav{gap:16px;font-size:13px;}
+    .hero-motif{order:-1;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">Naqsh <span>Khussa</span></div>
+  <nav>
+    <a onclick="scrollToShop()">Shop</a>
+    <a onclick="scrollToAbout()">Our Craft</a>
+    <button class="cart-btn" onclick="openCart()">
+      Cart (<span id="cart-count">0</span>)
+    </button>
+  </nav>
+</header>
+
+<section class="hero">
+  <div>
+    <div class="hero-eyebrow">Hand-stitched in Punjab</div>
+    <h1>Every stitch carries<br>a story of home.</h1>
+    <p>Naqsh Khussa brings the centuries-old craft of Punjabi khussa-making to your doorstep — each pair hand-embroidered by artisan families, made the way it's always been made.</p>
+    <button class="btn-primary" onclick="scrollToShop()">Browse the collection</button>
+  </div>
+  <div class="hero-motif">
+    <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M40 150 Q30 100 60 70 Q90 40 130 55 Q160 68 155 100 Q150 130 120 145 Q80 165 40 150 Z" fill="#FBF7EF" opacity="0.15"/>
+      <path d="M40 150 Q30 100 60 70 Q90 40 130 55 Q160 68 155 100 Q150 130 120 145 Q80 165 40 150 Z" stroke="#B08A3E" stroke-width="1.5"/>
+      <circle cx="95" cy="95" r="26" stroke="#FBF7EF" stroke-width="1.2" opacity="0.6"/>
+      <circle cx="95" cy="95" r="14" stroke="#B08A3E" stroke-width="1.2"/>
+      <path d="M60 70 Q75 85 95 82 Q115 79 130 55" stroke="#FBF7EF" stroke-width="1" opacity="0.5"/>
+    </svg>
+  </div>
+</section>
+
+<div class="strip">
+  <div>Cash on delivery available</div>
+  <div>Ships all over Pakistan</div>
+  <div>100% handcrafted leather</div>
+</div>
+
+<div class="section-title" id="shop">
+  <h2>The Collection</h2>
+  <p>Traditional Punjabi khussa, reimagined for everyday wear</p>
+</div>
+
+<div class="grid" id="product-grid"></div>
+
+<div class="section-title" id="about" style="padding-top:0;">
+  <h2>Our Craft</h2>
+  <p style="max-width:520px;margin:0 auto;line-height:1.8;">Each khussa passes through the hands of skilled karigars in Punjab — cut from genuine leather, embroidered thread by thread, and finished with the same patience our grandmothers' generation knew. No two pairs embroider exactly alike.</p>
+</div>
+
+<footer>
+  <div>
+    <div class="logo" style="margin-bottom:12px;">Naqsh <span>Khussa</span></div>
+    <p style="max-width:280px;">Traditional Punjabi khussa, handcrafted by artisan families and delivered across Pakistan.</p>
+  </div>
+  <div>
+    <h4>Contact</h4>
+    <p>WhatsApp: <span id="footer-phone">+92 300 0000000</span></p>
+    <p>Lahore, Punjab</p>
+  </div>
+  <div>
+    <h4>Shop</h4>
+    <a onclick="scrollToShop()" style="cursor:pointer;">All khussa</a><br>
+    <a onclick="openCart()" style="cursor:pointer;">Your cart</a>
+  </div>
+  <div class="footer-bottom">© 2026 Naqsh Khussa. Handmade with care in Pakistan.</div>
+</footer>
+
+<button class="admin-toggle" onclick="openAdmin()" title="Store admin" aria-label="Store admin">⚙</button>
+
+<!-- Cart drawer -->
+<div class="overlay" id="cart-overlay" onclick="closeCart()"></div>
+<div class="drawer" id="cart-drawer">
+  <div class="drawer-head">
+    <h3>Your cart</h3>
+    <button class="drawer-close" onclick="closeCart()">&times;</button>
+  </div>
+  <div class="drawer-items" id="drawer-items"></div>
+  <div class="drawer-foot">
+    <div class="total-row"><span>Total</span><span id="cart-total">PKR 0</span></div>
+    <button class="btn-primary" style="width:100%;" onclick="openCheckout()">Proceed to order</button>
+  </div>
+</div>
+
+<!-- Checkout modal -->
+<div class="modal-overlay" id="checkout-overlay">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('checkout-overlay')">&times;</button>
+    <h3>Complete your order</h3>
+    <div class="sub">We'll confirm your order over WhatsApp within a few hours.</div>
+    <div class="field"><label>Full name</label><input id="chk-name" placeholder="Your name"></div>
+    <div class="field"><label>Phone number</label><input id="chk-phone" placeholder="03XX-XXXXXXX"></div>
+    <div class="field"><label>Delivery address</label><textarea id="chk-address" placeholder="House no, street, city"></textarea></div>
+    <div class="field"><label>Shoe size (EU / PK)</label><input id="chk-size" placeholder="e.g. 40"></div>
+    <div class="field"><label>Notes (optional)</label><textarea id="chk-notes" placeholder="Any special request"></textarea></div>
+    <button class="btn-primary" style="width:100%;margin-top:6px;" onclick="submitOrder()">Send order via WhatsApp</button>
+  </div>
+</div>
+
+<!-- Admin modal -->
+<div class="modal-overlay" id="admin-overlay">
+  <div class="modal" style="max-width:560px;">
+    <button class="modal-close" onclick="closeModal('admin-overlay')">&times;</button>
+    <h3>Store admin</h3>
+    <div class="sub">Add photos, edit prices, manage stock and your order number.</div>
+
+    <div id="admin-locked" class="admin-lock">
+      <div class="field"><label>Admin password</label><input type="password" id="admin-pass" placeholder="Enter password"></div>
+      <button class="btn-primary" onclick="unlockAdmin()">Unlock</button>
+    </div>
+
+    <div id="admin-panel" style="display:none;">
+      <div class="field">
+        <label>Your WhatsApp number (for order notifications)</label>
+        <input id="admin-whatsapp" placeholder="923000000000 (country code, no +)">
+      </div>
+      <button class="btn-primary" style="margin-bottom:20px;" onclick="saveSettings()">Save number</button>
+      <div class="save-note" id="settings-note">Saved for this session.</div>
+
+      <h4 style="margin:22px 0 10px;font-family:'Inter';font-size:14px;text-transform:uppercase;letter-spacing:1px;color:#5c5347;">Products</h4>
+      <div id="admin-products"></div>
+      <button class="btn-primary" style="width:100%;margin-top:8px;" onclick="addProduct()">+ Add new product</button>
+      <div class="save-note show" style="margin-top:16px;">Changes apply instantly on the site above — this device only. See note below for making it permanent for all visitors.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ============ CONFIG ============ */
+const ADMIN_PASSWORD = "khussa2026"; // change this, then re-save the file
+let WHATSAPP_NUMBER = "923000000000"; // your number, country code no +, no spaces
+
+/* ============ DATA ============ */
+let products = [
+  {id:1, name:"Lahori Gold Thread Khussa", tag:"Best seller", price:3200, oldPrice:3800, stock:"In stock", img:"https://images.unsplash.com/photo-1595341888016-a392ef81b7de?w=600&q=80"},
+  {id:2, name:"Multani Mirror-Work Khussa", tag:"New", price:2800, oldPrice:null, stock:"In stock", img:"https://images.unsplash.com/photo-1449505278894-297fdb3edbc1?w=600&q=80"},
+  {id:3, name:"Peshawari Classic Leather", tag:"Handmade", price:2500, oldPrice:null, stock:"Only 4 left", img:"https://images.unsplash.com/photo-1533867617858-e7b97e060509?w=600&q=80"},
+  {id:4, name:"Bridal Zari Khussa", tag:"Bridal", price:5500, oldPrice:6500, stock:"In stock", img:"https://images.unsplash.com/photo-1560769629-975ec94e6a86?w=600&q=80"},
+];
+
+let cart = [];
+
+/* ============ RENDER PRODUCTS ============ */
+function renderProducts(){
+  const grid = document.getElementById('product-grid');
+  grid.innerHTML = products.map(p => `
+    <div class="card">
+      <div class="card-img">
+        <span class="stock-badge">${p.stock}</span>
+        <img src="${p.img}" alt="${p.name}">
+      </div>
+      <div class="card-body">
+        <div class="card-tag">${p.tag}</div>
+        <h3>${p.name}</h3>
+        <div class="price">PKR ${p.price.toLocaleString()}${p.oldPrice ? `<span class="old">PKR ${p.oldPrice.toLocaleString()}</span>` : ''}</div>
+        <div class="card-actions">
+          <button class="btn-add" onclick="addToCart(${p.id})">Add to cart</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+renderProducts();
+
+/* ============ CART ============ */
+function addToCart(id){
+  const existing = cart.find(c => c.id === id);
+  if(existing){ existing.qty++; } else {
+    const p = products.find(p => p.id === id);
+    cart.push({...p, qty:1});
+  }
+  updateCartUI();
+  openCart();
+}
+function changeQty(id, delta){
+  const item = cart.find(c => c.id === id);
+  if(!item) return;
+  item.qty += delta;
+  if(item.qty <= 0) cart = cart.filter(c => c.id !== id);
+  updateCartUI();
+}
+function updateCartUI(){
+  document.getElementById('cart-count').textContent = cart.reduce((s,c)=>s+c.qty,0);
+  const container = document.getElementById('drawer-items');
+  if(cart.length === 0){
+    container.innerHTML = `<div class="empty-cart">Your cart is empty</div>`;
+  } else {
+    container.innerHTML = cart.map(c => `
+      <div class="drawer-item">
+        <img src="${c.img}" alt="${c.name}">
+        <div class="drawer-item-info">
+          <h5>${c.name}</h5>
+          <div style="font-size:13px;color:#5c5347;">PKR ${c.price.toLocaleString()}</div>
+          <div class="qty-row">
+            <button onclick="changeQty(${c.id},-1)">−</button>
+            <span>${c.qty}</span>
+            <button onclick="changeQty(${c.id},1)">+</button>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+  const total = cart.reduce((s,c)=>s+c.price*c.qty,0);
+  document.getElementById('cart-total').textContent = `PKR ${total.toLocaleString()}`;
+}
+
+function openCart(){ document.getElementById('cart-overlay').classList.add('show'); document.getElementById('cart-drawer').classList.add('show'); }
+function closeCart(){ document.getElementById('cart-overlay').classList.remove('show'); document.getElementById('cart-drawer').classList.remove('show'); }
+
+function scrollToShop(){ document.getElementById('shop').scrollIntoView({behavior:'smooth'}); }
+function scrollToAbout(){ document.getElementById('about').scrollIntoView({behavior:'smooth'}); }
+
+/* ============ CHECKOUT -> WHATSAPP NOTIFICATION ============ */
+function openCheckout(){
+  if(cart.length === 0){ alert('Your cart is empty. Add a khussa first!'); return; }
+  document.getElementById('checkout-overlay').classList.add('show');
+}
+function closeModal(id){ document.getElementById(id).classList.remove('show'); }
+
+function submitOrder(){
+  const name = document.getElementById('chk-name').value.trim();
+  const phone = document.getElementById('chk-phone').value.trim();
+  const address = document.getElementById('chk-address').value.trim();
+  const size = document.getElementById('chk-size').value.trim();
+  const notes = document.getElementById('chk-notes').value.trim();
+
+  if(!name || !phone || !address){
+    alert('Please fill in name, phone, and address.');
+    return;
+  }
+
+  const items = cart.map(c => `${c.qty}x ${c.name} (PKR ${c.price.toLocaleString()})`).join('\n');
+  const total = cart.reduce((s,c)=>s+c.price*c.qty,0);
+
+  const message =
+`NEW ORDER — Naqsh Khussa
+
+Customer: ${name}
+Phone: ${phone}
+Address: ${address}
+Size: ${size || 'not specified'}
+Notes: ${notes || 'none'}
+
+Items:
+${items}
+
+Total: PKR ${total.toLocaleString()}`;
+
+  const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+  window.open(url, '_blank');
+
+  cart = [];
+  updateCartUI();
+  closeModal('checkout-overlay');
+  closeCart();
+  document.getElementById('chk-name').value='';
+  document.getElementById('chk-phone').value='';
+  document.getElementById('chk-address').value='';
+  document.getElementById('chk-size').value='';
+  document.getElementById('chk-notes').value='';
+}
+
+/* ============ ADMIN ============ */
+let adminUnlocked = false;
+
+function openAdmin(){
+  document.getElementById('admin-overlay').classList.add('show');
+  document.getElementById('admin-whatsapp').value = WHATSAPP_NUMBER;
+}
+function unlockAdmin(){
+  const val = document.getElementById('admin-pass').value;
+  if(val === ADMIN_PASSWORD){
+    adminUnlocked = true;
+    document.getElementById('admin-locked').style.display = 'none';
+    document.getElementById('admin-panel').style.display = 'block';
+    renderAdminProducts();
+  } else {
+    alert('Incorrect password.');
+  }
+}
+function saveSettings(){
+  WHATSAPP_NUMBER = document.getElementById('admin-whatsapp').value.trim();
+  document.getElementById('footer-phone').textContent = '+' + WHATSAPP_NUMBER;
+  const note = document.getElementById('settings-note');
+  note.classList.add('show');
+  setTimeout(()=>note.classList.remove('show'), 2000);
+}
+
+function renderAdminProducts(){
+  const container = document.getElementById('admin-products');
+  container.innerHTML = products.map(p => `
+    <div class="admin-product">
+      <div class="admin-product-head">
+        <h5>${p.name}</h5>
+        <button class="del-btn" onclick="deleteProduct(${p.id})">Remove</button>
+      </div>
+      <div class="field"><label>Name</label><input value="${p.name}" onchange="editProduct(${p.id},'name',this.value)"></div>
+      <div class="field">
+        <label>Photo</label>
+        <div class="photo-upload-row">
+          <img class="photo-preview" src="${p.img}" alt="">
+          <div style="flex:1;">
+            <input type="file" accept="image/*" onchange="uploadProductPhoto(${p.id}, this)">
+            <div class="sub" style="margin:6px 0 0;">Upload a photo from your device, or paste a link below.</div>
+          </div>
+        </div>
+        <input style="margin-top:8px;" value="${p.img.startsWith('data:') ? '' : p.img}" placeholder="Or paste an image URL" onchange="editProduct(${p.id},'img',this.value)">
+      </div>
+      <div class="field"><label>Price (PKR)</label><input type="number" value="${p.price}" onchange="editProduct(${p.id},'price',parseInt(this.value))"></div>
+      <div class="field"><label>Old price (optional, for a strike-through discount)</label><input type="number" value="${p.oldPrice||''}" onchange="editProduct(${p.id},'oldPrice',this.value?parseInt(this.value):null)"></div>
+      <div class="field"><label>Tag</label><input value="${p.tag}" onchange="editProduct(${p.id},'tag',this.value)"></div>
+      <div class="field"><label>Stock label</label><input value="${p.stock}" onchange="editProduct(${p.id},'stock',this.value)"></div>
+    </div>
+  `).join('');
+}
+function uploadProductPhoto(id, input){
+  const file = input.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e){
+    editProduct(id, 'img', e.target.result);
+    renderAdminProducts();
+  };
+  reader.readAsDataURL(file);
+}
+function editProduct(id, field, value){
+  const p = products.find(p=>p.id===id);
+  p[field] = value;
+  renderProducts();
+}
+function deleteProduct(id){
+  if(!confirm('Remove this product?')) return;
+  products = products.filter(p=>p.id!==id);
+  renderAdminProducts();
+  renderProducts();
+}
+function addProduct(){
+  const newId = Math.max(0,...products.map(p=>p.id)) + 1;
+  products.push({id:newId, name:"New khussa design", tag:"New", price:2000, oldPrice:null, stock:"In stock", img:"https://images.unsplash.com/photo-1595341888016-a392ef81b7de?w=600&q=80"});
+  renderAdminProducts();
+  renderProducts();
+}
+
+updateCartUI();
+</script>
+
+</body>
+</html>
